@@ -13,4 +13,7 @@ Task 10:  chmod --reference=olleh hello command sets the mode of the file hello 
 Task 11: chmod ugo+x */ command adds execute permission to all subdirectories of the current directory for the owner, the group owner and all other users.
 Task 12: mkdir my_dir -m 751 command Create a script that creates a directory called my_dir with permissions 751 in the working directory
 Task 13: chown :school file command changes the group owner to school for the file hello
-
+Task 14: chown vincent:staff * command changes the owner to vincent and the group owner to staff for all the files and directories in the working directory.<br/>
+Task 15: chown vincent:staff -h _hello command changes the owner and the group owner of symbolic link  _hello to vincent and staff respectively.<br/>
+Task 16: chown --from=guillaume betty hello command changes the owner of the file hello to betty only if it is owned by the user guillaume.
+Task 17: telnet towel.blinkenlights.nl command play the StarWars IV episode in the terminal.
