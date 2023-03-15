@@ -1,2 +1,3 @@
 #!/bin/bash
 echo $(($TRUEKNOWLEDGE + 128))
+echo $(($POWER/$DIVIDE))
