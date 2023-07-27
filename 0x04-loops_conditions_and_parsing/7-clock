@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Displays Best School 10 times using while loop
+
+h=0
+while ((h <= 12))
+do
+    m=1
+    echo "Hour: $h"
+    while ((m <= 59))
+    do
+        echo "$m"
+        (( m++ ))
+    done
+    (( h++ ))
+done
