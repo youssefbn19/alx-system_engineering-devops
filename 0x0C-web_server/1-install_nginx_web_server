@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Command you need to install nginx software into your server
+sudo apt-get -y update
+sudo apt-get -y nginx
+sudo ufw allow 'Nginx HTTP'
+sudo ufw enable
+sudo chown -R "$USER":"$USER"  /var/www/html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html # There is no need for this :)
+sudo service nginx restart
