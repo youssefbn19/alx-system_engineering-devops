@@ -3,5 +3,8 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-sudo sed -i '$a server{\n\tlisten 80;\n\tlisten [::]:80;\n\tserver_name 34.239.255.45;\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n}' /etc/nginx/sites-available/default
+sudo sed -i '/#/d' /etc/nginx/sites-enabled/default # Remove all comments in default file
+sudo sed -i '/^\s*$/d' /etc/nginx/sites-enabled/default # Remove empty lines in default file
+sudo sed -i '$d' /etc/nginx/sites-enabled/default # Remove the last line
+sudo sed -i '$a \\tlocation = /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n}' /etc/nginx/sites-enabled/default
 sudo service nginx restart
