@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Bash scripts that Install and configure HAproxy on my lb-01 server.
-sudo apt-get -y update
-sudo apt-get -y install --no-install-recommends software-properties-common
+sudo apt-get -y install software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
 sudo apt-get install -y haproxy=2.8.\*
+sudo apt-get -y update
 sudo service haproxy start
 front_end="frontend  chibicode-frontend\n\tbind *:80\n\tmode http\n\tdefault_backend chibicode-backend\n"
 back_end="backend chibicode-backend\n\tbalance roundrobin\n\tserver 329523-web-01 34.239.255.45:80 check\n\tserver 329523-web-02 52.91.182.206:80 check\n"
