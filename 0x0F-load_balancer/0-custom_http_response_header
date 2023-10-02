@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # bash scripts that configures a brand new Ubuntu machine with custom header on webserver
-sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER":"$USER"  /var/www/html
+# shellcheck disable=SC2059
 sudo sed -i '/^\tlocation \/ {/ a\\n\t\tadd_header X-Served-By $hostname;' /etc/nginx/sites-enabled/default
 sudo service nginx restart
