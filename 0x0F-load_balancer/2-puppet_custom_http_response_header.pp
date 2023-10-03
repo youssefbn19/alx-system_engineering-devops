@@ -1,24 +1,31 @@
 # Creating a custom HTTP header response.
-exec { 'apt-get update':
-    command => '/usr/bin/apt-get update'
+exec { 'apt-update':
+    command => '/usr/bin/sudo /usr/bin/apt-get -y update',
 }
 
 package { 'nginx':
-    ensure => "installed",
-    require => Exec['apt-get update']
+    ensure  => installed,
 }
 
 service { 'nginx':
-   ensure => running,
-   enable => true
+    ensure  => running,
+    enable  => true,
+    require => Package['nginx'],
 }
 
-exec { 'ufw allow':
-    command => '/usr/bin/sudo /usr/sbin/ufw allow "Nginx HTTP"',
-    require => Package['nginx']
-}
-exec { 'add_header':
-    command => '/usr/bin/sudo /usr/bin/sed -i "/^\\tlocation \\/ {/ a\\\\n\\t\\tadd_header X-Served-By $hostname;" /etc/nginx/sites-enabled/default',
-    require => Package['nginx']
+exec { 'change_file_owner':
+    command => '/usr/bin/sudo /usr/bin/chown -R "$USER":"$USER"  /var/www/html',
+    require => Package['nginx'],
 }
 
+exec { 'add_custom_header':
+    command => '/usr/bin/sudo /usr/bin/sed -i
+    "/^\tlocation \/ {/ a\\n\t\tadd_header X-Served-By $hostname;"
+    /etc/nginx/sites-enabled/default',
+    require => Package['nginx'],
+}
+
+exec { 'add_custom_header':
+    command => '/usr/bin/sudo /usr/sbin/service nginx restart',
+    require => Package['nginx'],
+}
