@@ -4,7 +4,7 @@ exec { 'apt-get update':
 }
 
 package { 'nginx':
-    ensure => "installed"
+    ensure => "installed",
     require => Exec['apt-get update']
 }
 
@@ -14,11 +14,11 @@ service { 'nginx':
 }
 
 exec { 'ufw allow':
-    command => '/usr/bin/sudo /usr/sbin/ufw allow "Nginx HTTP"'
+    command => '/usr/bin/sudo /usr/sbin/ufw allow "Nginx HTTP"',
     require => Package['nginx']
 }
-exec { 'sed header':
-    command => "/usr/bin/sudo /usr/bin/sed -i '/^\tlocation \/ {/ a\\n\t\tadd_header X-Served-By $hostname;' /etc/nginx/sites-enabled/default"
+exec { 'add_header':
+    command => '/usr/bin/sudo /usr/bin/sed -i "/^\\tlocation \\/ {/ a\\\\n\\t\\tadd_header X-Served-By $hostname;" /etc/nginx/sites-enabled/default',
     require => Package['nginx']
 }
 
