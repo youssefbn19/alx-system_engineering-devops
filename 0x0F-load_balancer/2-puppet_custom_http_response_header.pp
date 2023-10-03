@@ -20,7 +20,7 @@ exec { 'change_file_owner':
 
 exec { 'add_custom_header':
     command => "/usr/bin/sudo /usr/bin/sed -i\\
-                '/^\tlocation \/ {/ a\\\t\tadd_header X-Served-By $hostname;'\\
+                '/^\tlocation \/ {/ a\\\t\tadd_header X-Served-By \$hostname;'\\
                 /etc/nginx/sites-enabled/default;\\
                 /usr/bin/sudo /usr/sbin/service nginx restart",
     require => Package['nginx'],
