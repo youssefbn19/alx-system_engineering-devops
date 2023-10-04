@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Fixing Connection refused to port 80 with file script lines
+sudo service nginx start
+sudo sed -i -e's/8080/80/' -e's/ipv6only=on//' /etc/nginx/sites-enabled/default
+sudo rm /var/run/nginx.pid
