@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Fixing Connection refused to port 80
 sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get install -y nginx
 sed -i "s/listen 8080/listen 80/" /etc/nginx/sites-enabled/default
 sed -i "s/listen \[::\]:8080/listen [::]:80/" /etc/nginx/sites-enabled/default
 sed -i "s/ipv6only=on//" /etc/nginx/sites-enabled/default
