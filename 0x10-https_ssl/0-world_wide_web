@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Display information about subdomains.
+subdomain_info () {
+if [ $# -eq 2 ]
+then
+    sub="$2"
+    dig $2.$1 | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{print "The subdomain '$sub' is a "$4" record and points to "$NF""}'
+
+elif [ $# -eq 1 ]
+then
+    sub_domains=('www' 'lb-01' 'web-01' 'web-02')
+    for each in "${sub_domains[@]}"
+    do
+        dig $each.$1 | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{print "The subdomain '$each' is a "$4" record and points to "$NF""}'
+    done
+fi
+}
+
+subdomain_info $1 $2
