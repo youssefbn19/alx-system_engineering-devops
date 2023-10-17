@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Script run the whoami command under the user passed as an argument
+if [ $# -ne 1 ]; then
+    whoami
+else
+    sudo -u "$1" whoami
+fi
