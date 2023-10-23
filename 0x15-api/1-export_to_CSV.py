@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-""" This module information about his/her TODO list progress
-    for a given employee ID using REST API
+""" This module export certain data to csv file
 """
+import csv
 import json
 import requests
-import csv
 from sys import argv
 
 
