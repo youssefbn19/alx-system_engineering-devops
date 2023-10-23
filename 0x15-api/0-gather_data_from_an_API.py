@@ -3,8 +3,8 @@
     for a given employee ID using REST API
 """
 import json
-from sys import argv
 import requests
+from sys import argv
 
 
 def number_task_complete(tasks=[]):
