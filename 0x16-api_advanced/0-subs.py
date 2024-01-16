@@ -2,7 +2,6 @@
 """ Module contains number_of_subscribers function
 """
 
-import json
 import requests
 
 
@@ -14,9 +13,14 @@ def number_of_subscribers(subreddit):
     Args:
         subreddit: subreddit that we want to know its subscribers
     """
-    data = requests.get(f"https://www.reddit.com/r/{subreddit}/about.json")
+    header = {"User-Agent": "Something:)"}
+    data = requests.get(
+        f"https://www.reddit.com/r/{subreddit}/about.json",
+        allow_redirects=False,
+        headers=header,
+    )
     if data.status_code == 200:
-        dict_data = json.loads(data.text)
+        dict_data = data.json()
         if dict_data["kind"] == "t5":
             return dict_data["data"]["subscribers"]
     return 0
