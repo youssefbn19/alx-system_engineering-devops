@@ -1,6 +1,6 @@
 server {
         listen 80;
-        server_name 54.227.222.254;
+        server_name 100.24.240.251;
 
         location /airbnb-onepage/ {
                 proxy_pass http://0.0.0.0:5000;
